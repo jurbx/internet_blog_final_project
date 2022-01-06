@@ -1,9 +1,7 @@
-@import "../node_modules/bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap";
 
-a {
-  color: inherit !important;
-  text-decoration: none !important;
-}
-.container {
-  padding: 1rem !important;
+#root {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
 }

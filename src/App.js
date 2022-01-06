@@ -1,31 +1,19 @@
-import './index.css';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import 'bootstrap/scss/bootstrap.scss';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Static from "./components/Static";
-import NotFound from './components/NotFound';
+import LoginForm from './components/forms/LoginForm';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 export default function App() {
   return (
     <Router>
+      <Header />
       <Routes>
-        <Route path="login" element={
-          <Static title="Login form" />
-        } />
-        <Route path="/recent-posts" element={
-          <Static title="Recent Posts" />
-        } />
-        <Route path="/" element={
-          <Static title="Home">
-            <em>Some text</em>
-          </Static>} />
-        <Route path="*" element={
-          <Static title="Not found">
-            <NotFound />
-          </Static>
-        } />
+        <Route path="/sign-in" element={<LoginForm />} />
+        <Route path="/" element="" />
       </Routes>
+      <Footer />
     </Router>
-  );
+  )
 }
