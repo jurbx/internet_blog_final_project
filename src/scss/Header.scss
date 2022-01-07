@@ -1,5 +1,15 @@
 @import "~bootstrap/scss/bootstrap";
 
 #mainHeader {
-  
+  .page-title {
+    .logo {
+      color: $secondary;
+      transition: $transition-base;
+    }
+    &:hover {
+      .logo {
+        color: $primary;
+      }
+    }
+  }
 }
