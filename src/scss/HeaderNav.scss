@@ -3,6 +3,8 @@
 #headerNav {
   .nav-link {
     color: $white;
+    text-transform: capitalize !important;
+
     &.home:hover, &.home.active {
       color: $secondary;
     }
