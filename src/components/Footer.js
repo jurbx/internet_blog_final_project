@@ -3,7 +3,7 @@ import "../scss/Footer.scss";
 
 export default function Footer() {
   return (
-    <footer id="mainFooter" className="bg-dark text-white p-4">
+    <footer id="mainFooter" className="bg-dark text-white p-4 border-top">
       <Container>
         <Row>
           <Col sm="auto">

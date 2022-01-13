@@ -7,7 +7,7 @@ import HeaderNav from "./elements/HeaderNav";
 
 export default function Header({activeTab}) {
   return (
-    <header id="mainHeader" className="bg-dark text-white p-4">
+    <header id="mainHeader" className="bg-dark text-white p-4 border-bottom">
       <Container>
         <Row>
           <Col sm="auto">
