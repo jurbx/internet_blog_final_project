@@ -4,15 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import "../../scss/PostCard.scss";
+import "./PostCard.scss";
 import { useState } from "react";
 
 export default function PostCard({post}) {
   const [liked, setLiked] = useState(false);
-
-  function likePost() {
-    setLiked(!liked);
-  }
 
   return (
     <Card bg="dark" text="white">
@@ -26,7 +22,7 @@ export default function PostCard({post}) {
       </Card.Header>
       <Card.Body>{post.desc}</Card.Body>
       <Card.Footer>
-        <Button variant="dark" className="me-2" onClick={likePost}>
+        <Button variant="dark" className="me-2" onClick={() => setLiked(!liked)}>
           32 <FontAwesomeIcon icon={liked ? faThumbsUp : farThumbsUp} />
           </Button>
         <Link to={`/post${post.id}#comments`} className="btn btn-dark">18 <FontAwesomeIcon icon={faComments} /></Link>

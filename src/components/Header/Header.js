@@ -2,8 +2,8 @@ import { faBlog } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "../scss/Header.scss";
-import HeaderNav from "./elements/HeaderNav";
+import "./Header.scss";
+import HeaderNav from "./HeaderNav";
 
 export default function Header({activeTab}) {
   return (

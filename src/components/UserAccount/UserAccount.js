@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Alert, Card, Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import "../../scss/UserAccount.scss";
+import "./UserAccount.scss";
 
 export default function UserAccount() {
   const baseUrl = "https://projectwithrestapi.herokuapp.com";

@@ -1,5 +1,5 @@
 import { Container, Card, Col } from "react-bootstrap"
-import "../../scss/About.scss"
+import "./About.scss"
 import AuthorCard from "./AuthorCard"
 
 export default function About() {
