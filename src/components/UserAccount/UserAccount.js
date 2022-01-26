@@ -1,47 +1,75 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Alert, Card, Col, Container, Row } from "react-bootstrap";
+import { Alert, Card, Col, Container, Row, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import Cookies from "universal-cookie/es6";
 import "./UserAccount.scss";
+import PostCard from "../Home/PostCard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export default function UserAccount() {
   const baseUrl = "https://projectwithrestapi.herokuapp.com";
-  let { userId } = useParams();
-  const [user, setUser] = useState({});
+  let { userName } = useParams();
   const [errMsg, setErrMsg] = useState("");
-
-  // if (isNaN(+userId) || +userId < 0 ) {
-  //   return <Alert variant="danger">Invalid User Id</Alert>
-  // }
+  const [user, setUser] = useState({});
+  const [posts, setPosts] = useState([]);
+  const cookies = new Cookies();
 
   useEffect(() => {
-    if(isNaN(+userId) || +userId < 0) {
-      setErrMsg("Invalid User Id");
+    if(cookies.get("user") && cookies.get("user").username === userName) {
+      // Get Private Info
+      axios.get(`${baseUrl}/authentication/account/${cookies.get("user").username}/`, {headers: {
+        Authorization: `Token ${cookies.get("user").token}`
+      }})
+      .then(res => {
+        setUser(res.data)
+      })
+      .catch(err => {
+        setErrMsg("We cannot find this user");
+      })
     } else {
-      axios.get(`${baseUrl}/authentication/account/public/${userId}/`)
-        .then(res => setUser(res.data))
-        .catch(err => {
-          console.warn(err);
-          setErrMsg("We cannot find the user with this id");
-        })
+      // Get Public Info
+      axios.get(`${baseUrl}/authentication/account/public/user${userName}/`)
+      .then(res => setUser(res.data))
+      .catch(err => {
+        setErrMsg("We cannot find this user");
+      })
     }
+
+    // Get user posts
+    axios.get(`${baseUrl}/post/list/`)
+    .then(res => setPosts(res.data))
   }, []);
 
   return (
     errMsg ?
-    <Alert variant="danger">{errMsg}</Alert> :
-    <Container className="mt-4">
-      <Card className="p-2 user-card" bg="dark" text="white">
+    <Alert variant="danger" className="my-4">{errMsg}</Alert> :
+    <main className="py-4">
+    <Container className="bg-dark p-4">
+      <Card className="user-card border-0" bg="dark" text="white">
         <Col sm="auto">
           <div className="user-avatar-wrapper me-4">
             <img src={`${user.avatar}`} alt="User Avatar" />
           </div>
         </Col>
-        <Col>
+        <Col className="card-main-info">
+        <header>
           <h3>{user.first_name || "Jack"} {user.last_name || "Friday"}</h3>
           <p className="text-muted">{user.username}</p>
+        </header>
+        <div>
+          <Button variant="success"><FontAwesomeIcon icon={faEdit} /> Edit</Button>
+          &nbsp;
+          <Button variant="primary"><FontAwesomeIcon icon={faPlus} /> Post</Button>
+        </div>
         </Col>
       </Card>
+      <section className="text-white mt-4">
+        <h2 className="section-title">Your posts</h2>
+        {posts.map(post => <PostCard post={post} />)}
+      </section>
     </Container>
+    </main>
   )
 }

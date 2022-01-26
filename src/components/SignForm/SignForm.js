@@ -96,7 +96,7 @@ export default function SignForm({formType}) {
           variant: "success"
         })
         setTimeout(() => {
-          document.querySelector(".home").click()
+          window.location.pathname = `/users/${user.username}`
         }, 5000)
       } else {
         setAlertMsg({
@@ -107,14 +107,14 @@ export default function SignForm({formType}) {
         setToastVisible(true)
 
         setTimeout(() => {
-          document.querySelector(".sign-in").click()
+          window.location.pathname = "/sign-in"
         }, 5000)
       }
 
       console.log(res.data)
       let user = {
-        username: res.data.username,
-        password: res.data.password,
+        username: res.data.username || data.username,
+        password: res.data.password || data.password,
         id: res.data.user_id
       }
 
@@ -122,8 +122,8 @@ export default function SignForm({formType}) {
         user.token = res.data.token
       }
       cookies.set("user", JSON.stringify(user))
-       
-
+      
+      console.log(cookies.get("user"))
     })
     .catch(err => {
       formType === "signIn"
