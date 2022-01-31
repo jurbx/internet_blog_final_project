@@ -13,7 +13,8 @@ export default function SinglePostContent({post}) {
     <header className="p-2">
       <Link to={`/user${post.author}/`}>{post.post_author_username}</Link>
       <Button variant="dark" className="me-2" onClick={() => setLiked(!liked)}>
-        {post.likes.length} <FontAwesomeIcon icon={liked ? faThumbsUp : farThumbsUp} />
+        {post.likes.length}&nbsp;
+        <FontAwesomeIcon icon={liked ? faThumbsUp : farThumbsUp} />
       </Button>
     </header>
     <h2 className="section-title">{post.title}</h2>

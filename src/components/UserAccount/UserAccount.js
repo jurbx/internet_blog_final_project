@@ -30,17 +30,21 @@ export default function UserAccount() {
       })
     } else {
       // Get Public Info
-      axios.get(`${baseUrl}/authentication/account/public/user${userName}/`)
+      axios.get(`${baseUrl}/authentication/account/public/${userName}/`)
       .then(res => setUser(res.data))
       .catch(err => {
         setErrMsg("We cannot find this user");
       })
     }
+  }, []);
 
+  useEffect(() => {
     // Get user posts
     axios.get(`${baseUrl}/post/list/`)
-    .then(res => setPosts(res.data))
-  }, []);
+      .then(res => {
+        setPosts(res.data.filter(post => post.author.username === userName))
+      })
+  }, [])
 
   return (
     errMsg ?
@@ -67,7 +71,7 @@ export default function UserAccount() {
       </Card>
       <section className="text-white mt-4">
         <h2 className="section-title">Your posts</h2>
-        {posts.map(post => <PostCard post={post} />)}
+        {posts.map((post, idx) => <PostCard postInfo={post} key={idx} />)}
       </section>
     </Container>
     </main>

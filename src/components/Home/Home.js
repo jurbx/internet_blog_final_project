@@ -16,9 +16,9 @@ export default function Home() {
 
   return (
     <main className="text-white py-4">
-      <Container className="bg-dark p-4 rounded" id="postCardCont">
+      <Container className="bg-dark p-4 rounded">
         <h2 className="section-title">Recent Posts</h2>
-        { postList.length ? postList.map(post => <PostCard key={`post${post.id}`} post={post} />) : ""}
+        { postList.length ? postList.map(post => <PostCard key={`post${post.id}`} postInfo={post} />) : ""}
       </Container>
     </main>
   )
