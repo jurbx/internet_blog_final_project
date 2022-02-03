@@ -1,0 +1,35 @@
+@import "~bootstrap/scss/bootstrap";
+
+.single-post {
+  border-radius: $border-radius-lg;
+
+  .post-user-avatar {
+    height: 3.5rem;
+    margin-right: .5rem;
+  }
+  .comment-user-avatar {
+    height: 2rem;
+    margin-right: .5rem;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    background: tint-color($dark, 5%);
+    border-top-left-radius: $border-radius-lg;
+    border-top-right-radius: $border-radius-lg;
+    margin-bottom: map-get($spacers, 3);
+  }
+  section {
+    margin: 3rem 0;
+  }
+  .post-comment {
+    border: none;
+
+    .card-header {
+      border: none;
+    }
+    .card-body:not(:last-child) {
+      border-bottom: $border-width solid $border-color;
+    }
+  }
+}

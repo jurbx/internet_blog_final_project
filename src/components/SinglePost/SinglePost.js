@@ -4,6 +4,7 @@ import SinglePostContent from "./SinglePostContent";
 import NotFound from "../NotFound";
 import { Container } from "react-bootstrap";
 import axios from "axios";
+import "./SinglePost.scss"
 
 export default function SinglePost() {
   const
@@ -18,9 +19,9 @@ export default function SinglePost() {
   }, []);
 
   return (
-    <main className="text-white py-4">
-      <Container className="py-4 bg-dark rounded">
-        {post.title ? <SinglePostContent post={post} /> : <NotFound />}
+    <main className="text-white my-4 single-post">
+      <Container className="p-0 bg-dark rounded">
+        {post.title ? <SinglePostContent postInfo={post} /> : <NotFound />}
       </Container>
     </main>
   )

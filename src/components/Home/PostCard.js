@@ -42,7 +42,7 @@ export default function PostCard({postInfo}) {
   }
 
   useEffect(() => {
-    if (post.likes.filter(like => like.author === user.username).length) {
+    if (user && post.likes.filter(like => like.author === user.username).length) {
       setLiked(1)
     }
   }, [])
@@ -53,11 +53,15 @@ export default function PostCard({postInfo}) {
         <img src={post.author.avatar} className="rounded-circle" />
         <div className="d-flex justify-content-between">
           <p>
-            <Link to={`/users/${post.author.username}`}>{post.author.username}</Link>
+            <Link to={`/users/${post.author.username}`} className="text-reset text-decoration-none">
+              {post.author.username}
+            </Link>
           </p>
-          <span className="text-muted">Publish date</span>
+          {/* <span className="text-muted">Publish date</span> */}
         </div>
-        <h3><Link to={`/post${post.id}`}>{post.title}</Link></h3>
+        <h3 className="post-title">
+          <Link to={`/post${post.id}`} className="text-reset">{post.title}</Link>
+        </h3>
       </Card.Header>
       <Card.Body>{post.sections.content || post.sections[0].content}</Card.Body>
       <Card.Footer>

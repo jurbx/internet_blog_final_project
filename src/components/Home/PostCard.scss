@@ -32,4 +32,10 @@
   .card-header, .card-footer {
     background: tint-color($dark, 5%);
   }
+  .post-title {
+    &:hover {
+      color: $primary;
+      transition: $transition-base;
+    }
+  }
 }
