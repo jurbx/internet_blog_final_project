@@ -6,23 +6,20 @@ import About from "./About/About";
 import SignForm from "./SignForm/SignForm";
 import UserAccount from "./UserAccount/UserAccount";
 import SinglePost from "./SinglePost/SinglePost";
+import EditPost from "./Post/EditPost";
 
 export default function Static({item}) {
 
   return (<>
     <Header activeTab={item} />
     {
-    item === "home" ?
-      <Home /> :
-    item === "sign-in" || item === "sign-up" ?
-      <SignForm formType={item} /> :
-    item === "about" ?
-      <About /> :
-    item === "account" ?
-      <UserAccount /> :
-    item === "single-post" ?
-      <SinglePost /> :
-      <NotFound />
+    item === "home" ? <Home /> :
+    item === "sign-in" || item === "sign-up" ? <SignForm formType={item} /> :
+    item === "about" ? <About /> :
+    item === "account" ? <UserAccount /> :
+    item === "single-post" ? <SinglePost /> :
+    item === "edit-post" ? <EditPost /> :
+    <NotFound />
     }
 
     <Footer />

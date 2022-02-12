@@ -22,12 +22,12 @@ export default function SinglePostContent({postInfo}) {
 
   function likePost() {
     if (user && user.token) {
-      axios.post(`${baseUrl}/post/like/${post.id}/`, "", {
+      axios.post(`${baseUrl}/api/like/${post.id}/`, "", {
         headers: { "Authorization": `Token ${user.token}` }
       })
         .then(res => {
           setLiked(res.status - 200)
-          axios.get(`${baseUrl}/post/detail/${post.id}/`)
+          axios.get(`${baseUrl}/api/detail/${post.id}/`)
             .then(res => {
               setPost(res.data)
             })
@@ -60,7 +60,7 @@ export default function SinglePostContent({postInfo}) {
           <FontAwesomeIcon icon={liked ? faThumbsUp : farThumbsUp} />
         </Button>
         <a href="#comments" className="btn btn-dark">
-          {post.comments.length}
+          {post.comments.length}&nbsp;
           <FontAwesomeIcon icon={faComments} />
         </a>
       </div>

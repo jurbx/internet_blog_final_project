@@ -14,13 +14,13 @@ export default function SinglePost() {
   
 
   useEffect(() => {
-    axios.get(`${baseUrl}/post/detail/${postId}/`)
+    axios.get(`${baseUrl}/api/detail/${postId}/`)
     .then(res => setPost(res.data))
   }, []);
 
   return (
     <main className="text-white my-4 single-post">
-      <Container className="p-0 bg-dark rounded">
+      <Container className="p-0 pb-4 bg-dark rounded">
         {post.title ? <SinglePostContent postInfo={post} /> : <NotFound />}
       </Container>
     </main>

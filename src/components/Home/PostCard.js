@@ -11,7 +11,8 @@ import Cookies from "universal-cookie/es6";
 import ToastAlert from "../ToastAlert";
 
 export default function PostCard({postInfo}) {
-  const [alertMsg, setAlertMsg] = useState({}),
+  const
+    [alertMsg, setAlertMsg] = useState({}),
     [liked, setLiked] = useState(0),
     [toastVisible, setToastVisible] = useState(true),
     [post, setPost] = useState(postInfo),
@@ -63,7 +64,9 @@ export default function PostCard({postInfo}) {
           <Link to={`/post${post.id}`} className="text-reset">{post.title}</Link>
         </h3>
       </Card.Header>
-      <Card.Body>{post.sections.content || post.sections[0].content}</Card.Body>
+      <Card.Body>
+        { post.sections.content ? post.sections.content :"No content"}
+      </Card.Body>
       <Card.Footer>
         <Button variant="dark" className="me-2" onClick={likePost}>
           {post.likes.length}&nbsp;

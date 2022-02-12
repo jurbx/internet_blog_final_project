@@ -1,0 +1,19 @@
+@import "~bootstrap/scss/bootstrap";
+
+#editPostForm {
+  input:not([type="checkbox"]), textarea {
+    background: transparent;
+    color: $white;
+  }
+
+  textarea {
+    min-height: $line-height-base * $font-size-base * 8;
+  }
+
+  .section-content {
+    margin-top: map-get($spacers, 2);
+    &:not(:last-child) {
+      margin-bottom: map-get($spacers, 2);
+    }
+  }
+}

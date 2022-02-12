@@ -24,6 +24,10 @@
   }
   .post-comment {
     border: none;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-radius: 0;
+    border-bottom: $border-width solid $border-color;
 
     .card-header {
       border: none;

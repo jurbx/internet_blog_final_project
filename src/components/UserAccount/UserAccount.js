@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Alert, Card, Col, Container, Row, Button } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Cookies from "universal-cookie/es6";
 import "./UserAccount.scss";
 import PostCard from "../Home/PostCard";
@@ -40,7 +40,7 @@ export default function UserAccount() {
 
   useEffect(() => {
     // Get user posts
-    axios.get(`${baseUrl}/post/list/`)
+    axios.get(`${baseUrl}/api/list/`)
       .then(res => {
         setPosts(res.data.filter(post => post.author.username === userName))
       })
@@ -65,7 +65,9 @@ export default function UserAccount() {
         <div>
           <Button variant="success"><FontAwesomeIcon icon={faEdit} /> Edit</Button>
           &nbsp;
-          <Button variant="primary"><FontAwesomeIcon icon={faPlus} /> Post</Button>
+          <Link to="/create-post" className="btn btn-primary">
+            <FontAwesomeIcon icon={faPlus} /> Post
+          </Link>
         </div>
         </Col>
       </Card>

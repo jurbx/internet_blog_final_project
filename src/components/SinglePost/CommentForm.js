@@ -28,7 +28,7 @@ export default function CommentForm({postInfo, alertMsg, setAlertMsg, toastVisib
         message: e.target.commentText.value
       }
 
-      axios.post(`${baseUrl}/post/add/comment/${post.id}/`, JSON.stringify(data), {
+      axios.post(`${baseUrl}/api/add/comment/${post.id}/`, JSON.stringify(data), {
         headers: {
           "Authorization": `Token ${user.token}`,
           "Content-Type": "application/json"
