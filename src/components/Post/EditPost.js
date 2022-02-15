@@ -7,19 +7,32 @@ import "./EditPost.scss";
 import PostSection from "./PostSection"
 import axios from "axios";
 import ToastAlert from "../ToastAlert";
+import { useParams } from "react-router-dom";
 
 let id = 0;
-export default function EditPost({postInfo, type}) {
+export default function EditPost({type}) {
   const
     cookies = new Cookies(),
-    [post, setPost] = useState(type === "edit" ? postInfo : {}),
-    [sections, setSections] = useState(type === "edit" ? postInfo.sections : []),
+    [post, setPost] = useState({}),
+    [sections, setSections] = useState([]),
     [user, setUser] = useState(cookies.get("user")),
     baseUrl = "https://projectwithrestapi.herokuapp.com",
     [alertMsg, setAlertMsg] = useState({}),
-    [toastVisible, setToastVisible] = useState(true)
+    [toastVisible, setToastVisible] = useState(true),
+    { postId } = useParams()
+    
 
   useEffect(() => {
+    if(type === "edit" && postId) {
+      axios.get(`${baseUrl}/api/detail/${postId}/`)
+      .then(res => {
+        setPost(res.data)
+        setSections(res.data.sections)
+      })
+    }
+
+
+
     if(sections.length === 0) { setSections([{id: "section" + id}]) }
   }, [])
   

@@ -1,9 +1,10 @@
-import { faHome, faInfoCircle, faSignInAlt, faSignOutAlt, faUserPlus, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faInfoCircle, faSignInAlt, faSignOutAlt, faUserPlus, faUser, faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie/es6";
 import { Button } from "react-bootstrap"
 import "./HeaderNav.scss";
+import { useState } from "react";
 
 export default function HeaderNav({activeTab}) {
   let links = [
@@ -17,6 +18,8 @@ export default function HeaderNav({activeTab}) {
   const cookies = new Cookies();
 
   let user = cookies.get("user") || {}
+
+  const [menuVisible, setMenuVisible] = useState(false)
   
   function signOut(e) {
     e.preventDefault()
@@ -25,7 +28,14 @@ export default function HeaderNav({activeTab}) {
   }
 
   return (
-    <nav id="headerNav" className="nav justify-content-end w-100">
+    <div className="d-flex header-nav-wrapper">
+    <Button
+      className="nav-link menu"
+      onClick={() => setMenuVisible(!menuVisible)}
+    >
+      <FontAwesomeIcon icon={faBars} /> Menu
+    </Button>
+    <nav id="headerNav" className="nav" hidden={menuVisible}>
       {/*
       links.map((link, id) => (
         <Link to={link.path}
@@ -45,5 +55,5 @@ export default function HeaderNav({activeTab}) {
           <Link to="/sign-up" className="nav-link sign-up"><FontAwesomeIcon icon={faUserPlus} /> Sign Up</Link></>
       }
     </nav>
-  )
+  </div>)
 }

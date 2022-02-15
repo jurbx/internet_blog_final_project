@@ -1,5 +1,19 @@
 @import "~bootstrap/scss/bootstrap";
 
+.header-nav-wrapper {
+  justify-content: flex-end;
+
+  .nav-link.menu {
+      color: inherit;
+      background: transparent;
+      border: 0;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+}
+
 #headerNav {
   .nav-link {
     color: $white;

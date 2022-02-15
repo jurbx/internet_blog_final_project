@@ -16,7 +16,7 @@ export default function Header({activeTab}) {
               <h1 className="mb-0">Internet Blog</h1>
             </Link>
           </Col>
-          <Col className="d-flex align-items-center">
+          <Col>
             <HeaderNav activeTab={activeTab} />
           </Col>
         </Row>

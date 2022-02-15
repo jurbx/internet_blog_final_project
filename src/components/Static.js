@@ -18,7 +18,8 @@ export default function Static({item}) {
     item === "about" ? <About /> :
     item === "account" ? <UserAccount /> :
     item === "single-post" ? <SinglePost /> :
-    item === "edit-post" ? <EditPost /> :
+    item === "create-post" ? <EditPost type="create" /> :
+    item === "edit-post" ? <EditPost type="edit" /> :
     <NotFound />
     }
 

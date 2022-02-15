@@ -13,3 +13,13 @@
     }
   }
 }
+@media screen and (max-width: 1024px) {
+  #mainHeader .row {
+    display: block;
+  }
+  .header-nav-wrapper, #headerNav {
+    flex-direction: column;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+}
