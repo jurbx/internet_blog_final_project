@@ -24,7 +24,7 @@ export default function PostSection({section, removeSection, editSection}) {
         <Form.Control
           as="textarea"
           placeholder="Section Content"
-          defaultValue={section.desc}
+          defaultValue={section.desc || section.content}
           onChange={e => editSection({...section, desc: e.target.value})}
         />
       </FloatingLabel>

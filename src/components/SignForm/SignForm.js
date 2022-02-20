@@ -111,7 +111,6 @@ export default function SignForm({formType}) {
         }, 5000)
       }
 
-      console.log(res.data)
       let user = {
         username: res.data.username || data.username,
         password: res.data.password || data.password,
@@ -122,8 +121,6 @@ export default function SignForm({formType}) {
         user.token = res.data.token
       }
       cookies.set("user", JSON.stringify(user))
-      
-      console.log(cookies.get("user"))
     })
     .catch(err => {
       formType === "signIn"

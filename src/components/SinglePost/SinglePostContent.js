@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { Button } from "react-bootstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComments, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { faComments, faEdit, faThumbsUp, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faThumbsUp as farThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import { useState, useEffect } from "react";
 import PostComment from "./PostComment";
@@ -48,6 +48,34 @@ export default function SinglePostContent({postInfo}) {
     }
   }, [])
 
+  function deletePost() {
+    axios.delete(`${baseUrl}/api/edit/${post.id}/`, {
+      headers: {
+        "Authorization": `Token ${user.token}`
+      }
+    })
+    .then(res => {
+      setToastVisible(true)
+      setAlertMsg({
+        variant: "success",
+        title: "That's good",
+        msg: "Your post has been successfully deleted. You'll be redirected in 3s"
+      })
+
+      setTimeout(() => {
+        window.location.pathname = ``
+      }, 3000)
+    })
+    .catch(err => {
+      setToastVisible(true)
+      setAlertMsg({
+        variant: "danger",
+        title: "Something went wrong",
+        msg: "We cannot delete this post"
+      })
+    })
+  }
+
   return (<>
     <header className="p-4">
       <div className="left-side">
@@ -66,6 +94,17 @@ export default function SinglePostContent({postInfo}) {
       </div>
       <div className="right-side">
         <span className="text-secondary">{moment(post.created).fromNow()}</span>
+        {
+          user && post.author.username === user.username
+          ? <><Link to={`/edit-post/${post.id}/`} className="ms-2 btn btn-success">
+            <FontAwesomeIcon icon={faEdit} /> Edit
+          </Link>
+          &nbsp;
+          <Button variant="danger" onClick={deletePost}>
+            <FontAwesomeIcon icon={faTrash} /> Delete
+          </Button></>
+          : ""
+        }
       </div>
     </header>
     <h2 className="section-title mx-4">{post.title}</h2>

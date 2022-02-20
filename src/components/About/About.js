@@ -10,8 +10,23 @@ export default function About() {
       occupation: "Front-End Developer",
       link: "https://github.com/Object417",
       description: [
-        "Morbi sagittis sem eget lorem maximus accumsan. Fusce eget turpis et eros accumsan tincidunt vel sit amet lorem. Duis iaculis non ligula sit amet suscipit. Maecenas imperdiet quam in orci tincidunt pretium. Integer dictum varius velit, quis posuere elit hendrerit id. Nunc tempus aliquet interdum. Morbi turpis justo, posuere id velit et, pretium commodo quam. Nunc eget nibh tempus, eleifend metus in, fringilla neque. Nunc et aliquam ligula. Vestibulum a augue magna. Nulla facilisi. Vivamus posuere nunc ex, vel fermentum orci mattis in. Donec gravida sagittis faucibus. Donec luctus varius metus, sit amet condimentum sapien rhoncus sed. Vivamus ultrices nisl in urna porta consequat.",
-        "Etiam risus sem, varius vitae nulla ac, pellentesque hendrerit est. Etiam a sem accumsan, luctus nunc vel, rhoncus nisi. Suspendisse luctus risus eget lacus condimentum luctus. Donec gravida malesuada nunc sit amet sagittis. Nam congue nunc velit. Donec nec lectus odio. Proin tempus eu velit vel sollicitudin. Pellentesque convallis ante nibh, dapibus maximus nibh sodales nec. Duis purus ante, mattis vel porttitor in, vehicula id tortor. Quisque vel arcu quam. Vivamus pretium mauris eu sodales tempus. Mauris justo risus, varius at eleifend quis, efficitur at nibh. Nunc dignissim dui eu metus fringilla dapibus. Sed fringilla, tortor ut bibendum cursus, enim tellus varius lacus, nec gravida ligula turpis sit amet diam. Nullam eros augue, tristique quis consequat at, bibendum at odio."
+        `Просто человек, которому нравится не столько кодинг, сколько искусство оживлять вещи.
+        Мне нравится то, чем я занимаюсь, но не нравится, когда любимое дело превращается
+        в ежедневные мучения. У меня хорошая обучаемость, мне не трудно осваивать что-то новое,
+        но только в том случае, когда это имеет смысл. Бесполезные и бессмысленные на мой взгляд вещи
+        я никогда не смогу освоить и полюбить.`,
+        `Нечто похожее приключилось и с этим проектом: в начале мне было интересно,
+        но очень скоро, когда я получил уже все необходимые знания, он просто наскучил.
+        Я писал через силу, откладывал всё на завтра. Частично проблема была и в том,
+        что это не просто мой первый проект на React, а вообще первый "большой" проект.
+        С наращиванием функционала становилось труднее поддерживать мысли и файлы в порядке.
+        Не раз было такое, что я открывал проект и сразу же закрывал его, не имея ни малейшего желания
+        вспоминать, что я делал в прошлый раз и что ещё нужно сделать. Возможно, эту проблему можно
+        было решить созданием доски задач (которую мы почему-то благополучно скипнули ещё в самом начале).`,
+        `Вместо того, чтобы допиливать этот проект, я занимался другими, как мне кажется,
+        более интересными: осваивал библиотеку three.js, изучал прикольные фишки CSS
+        по типу масок и фильтров, работал с тройной вложенностью, до ночи залипал в играх.
+        Видимо, в скором будущем мне придётся стать более ответственным и избавиться от прокрастинации.`
       ]
     },
     {

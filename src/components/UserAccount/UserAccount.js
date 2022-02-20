@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Alert, Card, Col, Container, Row, Button } from "react-bootstrap";
+import { Alert, Card, Col, Container, Row, Button, Spinner } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import Cookies from "universal-cookie/es6";
 import "./UserAccount.scss";
@@ -15,6 +15,7 @@ export default function UserAccount() {
   const [user, setUser] = useState({});
   const [posts, setPosts] = useState([]);
   const cookies = new Cookies();
+  const [havePosts, setHavePosts] = useState(false);
 
   useEffect(() => {
     if(cookies.get("user") && cookies.get("user").username === userName) {
@@ -43,6 +44,7 @@ export default function UserAccount() {
     axios.get(`${baseUrl}/api/list/`)
       .then(res => {
         setPosts(res.data.filter(post => post.author.username === userName))
+        setHavePosts(true)
       })
   }, [])
 
@@ -63,17 +65,27 @@ export default function UserAccount() {
           <p className="text-muted">{user.username}</p>
         </header>
         <div>
-          <Button variant="success"><FontAwesomeIcon icon={faEdit} /> Edit</Button>
-          &nbsp;
-          <Link to="/create-post" className="btn btn-primary">
-            <FontAwesomeIcon icon={faPlus} /> Post
-          </Link>
+
+          {
+            user.username === userName 
+            ? <Link to="/create-post" className="btn btn-primary">
+                <FontAwesomeIcon icon={faPlus} /> Post
+              </Link>
+            : ""
+          }
+
         </div>
         </Col>
       </Card>
       <section className="text-white mt-4">
         <h2 className="section-title">Your posts</h2>
-        {posts.map((post, idx) => <PostCard postInfo={post} key={idx} />)}
+        {
+          !havePosts ? <div className="text-center"><Spinner animation="border" /></div>
+          : posts.length
+          ? posts.map((post, idx) => <PostCard postInfo={post} key={idx} />)
+          : "You haven't published any post yet"
+          
+        }
       </section>
     </Container>
     </main>

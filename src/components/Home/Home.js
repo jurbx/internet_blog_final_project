@@ -11,7 +11,9 @@ export default function Home() {
 
   useEffect(() => {
     axios.get(`${baseUrl}/api/list/`)
-    .then(res => setPostList(res.data))
+    .then(res => {
+      setPostList(res.data.reverse())
+    })
     .catch(err => console.warn(err))
     .finally(() => setHavePostList(true))
   }, [])

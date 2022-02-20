@@ -1,7 +1,7 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import { Button, Container, FloatingLabel, Form } from "react-bootstrap";
+import { Button, Container, FloatingLabel, Form, Alert } from "react-bootstrap";
 import Cookies from "universal-cookie/es6";
 import "./EditPost.scss";
 import PostSection from "./PostSection"
@@ -19,15 +19,25 @@ export default function EditPost({type}) {
     baseUrl = "https://projectwithrestapi.herokuapp.com",
     [alertMsg, setAlertMsg] = useState({}),
     [toastVisible, setToastVisible] = useState(true),
-    { postId } = useParams()
+    { postId } = useParams(),
+    [errMsg, setErrMsg] = useState("")
     
 
   useEffect(() => {
+
     if(type === "edit" && postId) {
       axios.get(`${baseUrl}/api/detail/${postId}/`)
       .then(res => {
-        setPost(res.data)
-        setSections(res.data.sections)
+
+        if(user.username === res.data.author.username) {
+          setPost(res.data)
+          setSections(res.data.sections)
+        } else {
+          setErrMsg("You cannot edit this post")
+        }
+      })
+      .catch(err => {
+        setErrMsg("We cannot find post with this id")
       })
     }
 
@@ -50,45 +60,58 @@ export default function EditPost({type}) {
 
     setSections(sections.map(section => section.id === editedSection.id ? editedSection : section))
   }
-  // console.log(sections)
 
   function sendForm(e) {
     e.preventDefault()
     const form = e.target
 
+    sections.forEach(section => {
+      section.content = section.content || section.desc
+      delete section.desc
+      if(section.id.toString().includes("section")) {
+        delete section.id
+      }
+    })
+
     let data = {
       title: form.postTitleInput.value,
       sections: sections
-    }
-
-    axios.post(`${baseUrl}/api/create/`, JSON.stringify(data), {
+    },
+    url = `${baseUrl}/api/${type === "edit" ? `edit/${postId}/` : `create/`}`,
+    axiosConfig = {
       headers: {
         "Authorization": `Token ${user.token}`,
         "Content-Type": "application/json"
       }
-    })
-    .then(res => {
-      setAlertMsg({
-        title: "That's good",
-        msg: "Your post has been successfully published",
-        variant: "success"
+    }
+
+
+    axios[type === "edit" ? "put" : "post"](url, JSON.stringify(data), axiosConfig)
+      .then(res => {
+        setAlertMsg({
+          title: "That's good",
+          msg: `Your post has been successfully ${type === "edit" ? "edited" : "published"}`,
+          variant: "success"
+        })
+        setToastVisible(true)
       })
-      setToastVisible(true)
-    })
-    .catch(err => {
-      setAlertMsg({
-        title: "Something went wrong",
-        msg: "We couldn't publish your post",
-        variant: "danger"
+      .catch(err => {
+        setAlertMsg({
+          title: "Something went wrong",
+          msg: `We couldn't ${type === "edit" ? "edit" : "publish"} your post`,
+          variant: "danger"
+        })
+        setToastVisible(true)
       })
-      setToastVisible(true)
-    })
+
   }
 
   return (
     <main className="text-white my-4 single-post">
       <Container className="p-4 bg-dark rounded">
-        
+        {
+        errMsg ? <Alert variant="danger">{errMsg}</Alert>
+        : <>
         <Form id="editPostForm" onSubmit={sendForm}>
           <FloatingLabel label="Post Title" controlId="postTitleInput" className="mb-3">
             <Form.Control type="text" placeholder="Post Title" defaultValue={post.title} />
@@ -114,7 +137,8 @@ export default function EditPost({type}) {
         </Form>
 
         {alertMsg.msg ? <ToastAlert alert={alertMsg} visible={toastVisible} setVisible={setToastVisible} /> : ""}
-
+        </>
+        }
       </Container>
     </main>
   )
