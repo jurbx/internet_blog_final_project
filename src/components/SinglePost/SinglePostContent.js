@@ -108,12 +108,16 @@ export default function SinglePostContent({postInfo}) {
       </div>
     </header>
     <h2 className="section-title mx-4">{post.title}</h2>
-    {post.sections.map(section => (
-      <section key={section.id} className="px-4">
-        <h3>{section.title}</h3>
-        {section.content}
-      </section>
-    ))}
+    {
+      post.sections.length
+      ? post.sections.map(section => (
+        <section key={section.id} className="px-4">
+          <h3>{section.title}</h3>
+          {section.content}
+        </section>
+      ))
+      : <p className="mx-4">No content</p>
+    }
     {user && user.token
       ? <CommentForm
           postInfo={post}
@@ -124,7 +128,11 @@ export default function SinglePostContent({postInfo}) {
         />
       : ""}
     <h4 className="section-title mx-4" id="comments">Comments</h4>
-    {post.comments.map(comment => <PostComment key={comment.id} comment={comment} />)}
+    {
+      post.comments.length
+      ? post.comments.map(comment => <PostComment key={comment.id} comment={comment} />)
+      : <p className="mx-4 my-0">No comments yet. Be the first!</p>
+    }
     {alertMsg.msg ? <ToastAlert alert={alertMsg} visible={toastVisible} setVisible={setToastVisible} /> : ""}
   </>)
 }

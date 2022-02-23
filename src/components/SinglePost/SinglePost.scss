@@ -6,6 +6,8 @@
   .post-user-avatar {
     height: 3.5rem;
     margin-right: .5rem;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
   }
   .comment-user-avatar {
     height: 2rem;

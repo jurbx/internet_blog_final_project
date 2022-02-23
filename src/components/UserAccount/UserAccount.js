@@ -37,7 +37,7 @@ export default function UserAccount() {
         setErrMsg("We cannot find this user");
       })
     }
-  }, []);
+  }, [userName]);
 
   useEffect(() => {
     // Get user posts
@@ -46,12 +46,12 @@ export default function UserAccount() {
         setPosts(res.data.filter(post => post.author.username === userName))
         setHavePosts(true)
       })
-  }, [])
+  }, [userName])
 
   return (
-    errMsg ?
-    <Alert variant="danger" className="my-4">{errMsg}</Alert> :
-    <main className="py-4">
+    errMsg
+    ? <Alert variant="danger" className="my-4">{errMsg}</Alert>
+    : <main className="py-4">
     <Container className="bg-dark p-4">
       <Card className="user-card border-0" bg="dark" text="white">
         <Col sm="auto">
@@ -67,7 +67,7 @@ export default function UserAccount() {
         <div>
 
           {
-            user.username === userName 
+            cookies.get("user") && cookies.get("user").username === userName
             ? <Link to="/create-post" className="btn btn-primary">
                 <FontAwesomeIcon icon={faPlus} /> Post
               </Link>
@@ -78,12 +78,21 @@ export default function UserAccount() {
         </Col>
       </Card>
       <section className="text-white mt-4">
-        <h2 className="section-title">Your posts</h2>
+        <h2 className="section-title">
+          {
+            cookies.get("user") && cookies.get("user").username === userName
+            ? "Your "
+            : userName + "'s "
+          }
+          Posts
+        </h2>
         {
           !havePosts ? <div className="text-center"><Spinner animation="border" /></div>
           : posts.length
           ? posts.map((post, idx) => <PostCard postInfo={post} key={idx} />)
-          : "You haven't published any post yet"
+          : cookies.get("user") && cookies.get("user").username === userName
+          ? "You haven't published any post yet"
+          : userName + " hasn't published any post yet"
           
         }
       </section>
