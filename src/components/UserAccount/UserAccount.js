@@ -6,7 +6,7 @@ import Cookies from "universal-cookie/es6";
 import "./UserAccount.scss";
 import PostCard from "../Home/PostCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faPencilAlt, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export default function UserAccount() {
   const baseUrl = "https://projectwithrestapi.herokuapp.com";
@@ -68,9 +68,12 @@ export default function UserAccount() {
 
           {
             cookies.get("user") && cookies.get("user").username === userName
-            ? <Link to="/create-post" className="btn btn-primary">
+            ? <><Link to="/create-post" className="btn btn-primary">
                 <FontAwesomeIcon icon={faPlus} /> Post
-              </Link>
+              </Link>&nbsp;
+              <Link to={`/users/${user.username}/edit`} className="btn btn-success">
+                <FontAwesomeIcon icon={faPencilAlt} /> Edit Account
+              </Link></>
             : ""
           }
 

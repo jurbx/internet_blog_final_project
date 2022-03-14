@@ -12,6 +12,7 @@ ReactDOM.render(
         <Route path="/sign-up" element={<Static item="sign-up" />} />
         <Route path="/sign-in" element={<Static item="sign-in" />} />
         <Route path="/users/:userName" element={<Static item="account" />} />
+        <Route path="/users/:userName/edit" element={<Static item="account-edit" />} />
         <Route path="/users" element={<Static item="not-found" />} />
         <Route path="/post:postId" element={<Static item="single-post" />} />
         <Route path="/create-post" element={<Static item="create-post" />} />

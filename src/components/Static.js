@@ -7,6 +7,7 @@ import SignForm from "./SignForm/SignForm";
 import UserAccount from "./UserAccount/UserAccount";
 import SinglePost from "./SinglePost/SinglePost";
 import EditPost from "./Post/EditPost";
+import EditUserAccount from "./UserAccount/EditUserAccount";
 
 export default function Static({item}) {
 
@@ -17,6 +18,7 @@ export default function Static({item}) {
     item === "sign-in" || item === "sign-up" ? <SignForm formType={item} /> :
     item === "about" ? <About /> :
     item === "account" ? <UserAccount /> :
+    item === "account-edit" ? <EditUserAccount /> :
     item === "single-post" ? <SinglePost /> :
     item === "create-post" ? <EditPost type="create" /> :
     item === "edit-post" ? <EditPost type="edit" /> :

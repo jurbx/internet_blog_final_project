@@ -34,10 +34,7 @@ export default function About() {
       avatar: "https://i.pinimg.com/550x/ed/cf/cc/edcfcceee274c98a860cfe2be92e047f.jpg",
       occupation: "Back-End Developer",
       link: "https://github.com/jurbx",
-      description: [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin cursus magna et sem tincidunt, quis bibendum dui suscipit. In interdum vitae est vel scelerisque. Donec maximus, nunc at placerat egestas, sapien ante interdum orci, vel varius odio libero eget mi. Praesent sodales quis odio sed porta. Aliquam faucibus in lectus euismod auctor. Duis tempor nisi non ligula posuere viverra. Curabitur tincidunt elit quis purus maximus pharetra. In mattis euismod fermentum. Vestibulum vel ornare mi. Curabitur at tortor tempus, egestas enim a, condimentum dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
-        "Fusce finibus viverra nibh malesuada rutrum. Duis vulputate pellentesque enim euismod tincidunt. Fusce vel finibus magna, ut tempor dolor. Etiam imperdiet nisi tellus, eu rutrum sem maximus sed. Maecenas blandit, erat eu consequat tempus, orci lorem viverra ex, eget pellentesque dui orci eu nunc. Vivamus fermentum porttitor augue, non consectetur sem tincidunt non. Fusce quis ultricies sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor augue ex, sit amet sodales eros volutpat eget."
-      ]
+      description: ["Данный замечательный разработчик поленился оставить комментарий. Без сарказма замечательный."]
     }
   ]
 
