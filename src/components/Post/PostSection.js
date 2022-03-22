@@ -25,7 +25,7 @@ export default function PostSection({section, removeSection, editSection}) {
           as="textarea"
           placeholder="Section Content"
           defaultValue={section.desc || section.content}
-          onChange={e => editSection({...section, desc: e.target.value})}
+          onChange={e => editSection({...section, content: e.target.value})}
         />
       </FloatingLabel>
     </section>

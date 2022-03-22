@@ -4,7 +4,7 @@ import { Toast, ToastContainer } from "react-bootstrap";
 export default function ToastAlert({alert, visible, setVisible}) {
 
   return (
-    <ToastContainer style={{position: "fixed", bottom: ".5rem", right: ".5rem"}}>
+    <ToastContainer style={{position: "fixed", bottom: ".5rem", right: ".5rem", zIndex: "10"}}>
       <Toast
         show={visible}
         onClose={() => setVisible(false)}

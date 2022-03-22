@@ -4,6 +4,8 @@ import { useState } from "react";
 import ToastAlert from "../ToastAlert";
 import Cookies from "universal-cookie/es6";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faTractor, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function CommentForm({postInfo, alertMsg, setAlertMsg, toastVisible, setToastVisible}) {
   const
@@ -35,6 +37,9 @@ export default function CommentForm({postInfo, alertMsg, setAlertMsg, toastVisib
         }
       })
       .then(res => {
+        setTimeout(() => {
+          window.location.reload()
+        }, 2000)
         setAlertMsg({
           title: "That's good",
           msg: "Your comment has been successfully published",
@@ -72,7 +77,12 @@ export default function CommentForm({postInfo, alertMsg, setAlertMsg, toastVisib
           placeholder="What do you think about this?"
         ></Form.Control>
       </FloatingLabel>
-      <Button variant="success" type="submit">Reply</Button>
+      <Button variant="success" type="submit" className="me-2">
+        <FontAwesomeIcon icon={faEnvelope} /> Reply
+      </Button>
+      <Button variant="danger" type="reset">
+        <FontAwesomeIcon icon={faTrash} /> Clear
+      </Button>
     </Form>
   </>)
 }

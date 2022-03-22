@@ -10,8 +10,10 @@
     object-fit: cover;
   }
   .comment-user-avatar {
+    width: 2rem;
     height: 2rem;
     margin-right: .5rem;
+    object-fit: cover;
   }
   header {
     display: flex;
@@ -23,6 +25,10 @@
   }
   section {
     margin: 3rem 0;
+
+    img {
+      max-width: 100%;
+    }
   }
   .post-comment {
     border: none;

@@ -50,6 +50,7 @@ export default function EditUserAccount() {
     }
     if (form.password.value) {
       data.password = form.password.value
+      data.password2 = form.password.value
     }
 
     let config = {
@@ -61,6 +62,9 @@ export default function EditUserAccount() {
 
     axios.put(baseUrl + `/authentication/account/${user.username}/`, JSON.stringify(data), config)
     .then(res => {
+      setTimeout(() => {
+        // window.location.pathname = `/users/${user.username}`
+      }, 2000)
       setAlertMsg({
         title: "That's Good",
         msg: "Your account has been successfully edited",

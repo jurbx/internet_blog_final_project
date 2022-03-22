@@ -1,0 +1,11 @@
+@import "~bootstrap/scss/bootstrap";
+
+#singleCommentForm {
+  input:not([type="checkbox"]), textarea {
+    background: transparent;
+    color: $white;
+  }
+  textarea {
+    min-height: $line-height-base * $font-size-base * 4;
+  }
+}

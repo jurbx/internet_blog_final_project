@@ -1,4 +1,4 @@
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { Button, Container, FloatingLabel, Form, Alert } from "react-bootstrap";
@@ -7,7 +7,7 @@ import "./EditPost.scss";
 import PostSection from "./PostSection"
 import axios from "axios";
 import ToastAlert from "../ToastAlert";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 let id = 0;
 export default function EditPost({type}) {
@@ -88,6 +88,10 @@ export default function EditPost({type}) {
 
     axios[type === "edit" ? "put" : "post"](url, JSON.stringify(data), axiosConfig)
       .then(res => {
+        setTimeout(() => {
+          // window.location.pathname = `/post${ type === "edit" ? postId : res.data.id }`
+          console.log(res, res.data)
+        }, 2000)
         setAlertMsg({
           title: "That's good",
           msg: `Your post has been successfully ${type === "edit" ? "edited" : "published"}`,
@@ -129,11 +133,17 @@ export default function EditPost({type}) {
           }
 
           <Button variant="primary" className="me-2" onClick={addSection}>
-            <FontAwesomeIcon icon={faPlus} /> Section
+            <FontAwesomeIcon icon={faPlus} />&nbsp;
+            Section
           </Button>
-          <Button variant="success" type="submit">
-            {type === "edit" ? "Submit edit" : "Create the Post"}
+          <Button variant="success" type="submit" className="me-2">
+            <FontAwesomeIcon icon={faCheck} />&nbsp;
+            { type === "edit" ? "Submit edit" : "Create the Post"}
           </Button>
+          <Link to={`/post${postId}`} className="btn btn-danger">
+            <FontAwesomeIcon icon={faTimes} />&nbsp;
+            Cancel
+          </Link>
         </Form>
 
         {alertMsg.msg ? <ToastAlert alert={alertMsg} visible={toastVisible} setVisible={setToastVisible} /> : ""}

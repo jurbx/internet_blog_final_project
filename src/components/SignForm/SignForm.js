@@ -92,23 +92,23 @@ export default function SignForm({formType}) {
       if(formType === "signIn") {
         setAlertMsg({
           title: "That's good",
-          msg: "You have successfully signed into your account. You'll be redirected in 5s",
+          msg: "You have successfully signed into your account",
           variant: "success"
         })
         setTimeout(() => {
           window.location.pathname = `/users/${user.username}`
-        }, 5000)
+        }, 2000)
       } else {
         setAlertMsg({
           title: "That's good",
-          msg: "You have successfully created an account. Now you should to sing in. You'll be redirected in 5s",
+          msg: "You have successfully created an account. Now you should to sing in",
           variant: "success"
         })
         setToastVisible(true)
 
         setTimeout(() => {
           window.location.pathname = "/sign-in"
-        }, 5000)
+        }, 2000)
       }
 
       let user = {

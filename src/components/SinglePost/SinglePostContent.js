@@ -10,6 +10,7 @@ import Cookies from "universal-cookie/es6";
 import axios from "axios";
 import ToastAlert from "../ToastAlert";
 import CommentForm from "./CommentForm";
+import ReactMarkdown from "react-markdown";
 
 export default function SinglePostContent({postInfo}) {
   const [alertMsg, setAlertMsg] = useState({}),
@@ -113,7 +114,7 @@ export default function SinglePostContent({postInfo}) {
       ? post.sections.map(section => (
         <section key={section.id} className="px-4">
           <h3>{section.title}</h3>
-          {section.content}
+          <ReactMarkdown children={section.content} />
         </section>
       ))
       : <p className="mx-4">No content</p>

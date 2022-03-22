@@ -24,7 +24,7 @@ export default function HeaderNav({activeTab}) {
   function signOut(e) {
     e.preventDefault()
     cookies.remove("user")
-    window.location.reload()
+    window.location.pathname = "/sign-in"
   }
 
   return (
