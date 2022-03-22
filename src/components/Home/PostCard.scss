@@ -30,6 +30,10 @@
   }
   .card-body {
     max-height: 20rem;
+  
+    h1, h2, h3, h4, h5, h6, img {
+      display: none;
+    }
   }
   .card-header, .card-footer {
     background: tint-color($dark, 5%);

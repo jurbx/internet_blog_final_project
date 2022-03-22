@@ -41,10 +41,10 @@ export default function EditPost({type}) {
       })
     }
 
-
-
     if(sections.length === 0) { setSections([{id: "section" + id}]) }
   }, [])
+
+  let sectionsForSend = []
   
   function addSection() {
     id++
@@ -65,17 +65,21 @@ export default function EditPost({type}) {
     e.preventDefault()
     const form = e.target
 
-    sections.forEach(section => {
-      section.content = section.content || section.desc
-      delete section.desc
-      if(section.id.toString().includes("section")) {
-        delete section.id
-      }
-    })
+    let addedSections = sections.filter(localSection => post.sections.every(sectionFromBase => sectionFromBase.id !== localSection.id))
+    let removedSections = post.sections.filter(sectionFromBase => sections.every(localSection => localSection.id !== sectionFromBase.id))
+    let editedSections = sections.filter(localSection => post.sections.some(sectionFromBase => sectionFromBase.id === localSection.id && (sectionFromBase.title !== localSection.title || sectionFromBase.content !== localSection.content)))
+
+    addedSections.forEach(section => delete section.id)
+    removedSections.forEach(section => section.delete = "delete")
+
+    console.log(sections, post.sections)
+    console.log("Added", addedSections)
+    console.log("Removed", removedSections)
+    console.log("Edited", editedSections)
 
     let data = {
       title: form.postTitleInput.value,
-      sections: sections
+      sections: [...addedSections, ...removedSections, ...editedSections]
     },
     url = `${baseUrl}/api/${type === "edit" ? `edit/${postId}/` : `create/`}`,
     axiosConfig = {

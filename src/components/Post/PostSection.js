@@ -1,6 +1,6 @@
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, FloatingLabel, Form, InputGroup } from "react-bootstrap";
+import { Button, FloatingLabel, Form, InputGroup, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 export default function PostSection({section, removeSection, editSection}) {
 
@@ -19,7 +19,13 @@ export default function PostSection({section, removeSection, editSection}) {
           <FontAwesomeIcon icon={faTrash} /> Section
         </Button>
       </div>
-
+      <OverlayTrigger
+        trigger="click"
+        placement="top"
+        overlay={
+          <Tooltip>You can use MarkDown syntax to make your post looks good</Tooltip>
+        }
+      >
       <FloatingLabel label="Section Content" className="section-content">
         <Form.Control
           as="textarea"
@@ -28,6 +34,7 @@ export default function PostSection({section, removeSection, editSection}) {
           onChange={e => editSection({...section, content: e.target.value})}
         />
       </FloatingLabel>
+      </OverlayTrigger>
     </section>
   )
 }

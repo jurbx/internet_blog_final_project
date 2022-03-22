@@ -60,12 +60,12 @@ export default function SinglePostContent({postInfo}) {
       setAlertMsg({
         variant: "success",
         title: "That's good",
-        msg: "Your post has been successfully deleted. You'll be redirected in 3s"
+        msg: "Your post has been successfully deleted"
       })
 
       setTimeout(() => {
         window.location.pathname = ``
-      }, 3000)
+      }, 2000)
     })
     .catch(err => {
       setToastVisible(true)

@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie/es6";
 import ToastAlert from "../ToastAlert";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 export default function PostCard({postInfo}) {
   const
@@ -65,7 +66,7 @@ export default function PostCard({postInfo}) {
         </h3>
       </Card.Header>
       <Card.Body>
-        { post.sections.content || post.sections[0].content || "No content"}
+        <ReactMarkdown children={post.sections.content || post.sections[0].content || "No content"} />
       </Card.Body>
       <Card.Footer>
         <Button variant="dark" className="me-2" onClick={likePost}>
