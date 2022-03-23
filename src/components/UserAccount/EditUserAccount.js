@@ -63,7 +63,7 @@ export default function EditUserAccount() {
     axios.put(baseUrl + `/authentication/account/${user.username}/`, JSON.stringify(data), config)
     .then(res => {
       setTimeout(() => {
-        // window.location.pathname = `/users/${user.username}`
+        window.location.pathname = `/users/${user.username}`
       }, 2000)
       setAlertMsg({
         title: "That's Good",

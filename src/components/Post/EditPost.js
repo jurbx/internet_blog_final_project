@@ -65,21 +65,24 @@ export default function EditPost({type}) {
     e.preventDefault()
     const form = e.target
 
-    let addedSections = sections.filter(localSection => post.sections.every(sectionFromBase => sectionFromBase.id !== localSection.id))
-    let removedSections = post.sections.filter(sectionFromBase => sections.every(localSection => localSection.id !== sectionFromBase.id))
-    let editedSections = sections.filter(localSection => post.sections.some(sectionFromBase => sectionFromBase.id === localSection.id && (sectionFromBase.title !== localSection.title || sectionFromBase.content !== localSection.content)))
+    let addedSections, removedSections, editedSections
+    if(type === "edit") {
+      addedSections = sections.filter(localSection => post.sections.every(sectionFromBase => sectionFromBase.id !== localSection.id))
+      removedSections = post.sections.filter(sectionFromBase => sections.every(localSection => localSection.id !== sectionFromBase.id))
+      editedSections = sections.filter(localSection => post.sections.some(sectionFromBase => sectionFromBase.id === localSection.id && (sectionFromBase.title !== localSection.title || sectionFromBase.content !== localSection.content)))
 
-    addedSections.forEach(section => delete section.id)
-    removedSections.forEach(section => section.delete = "delete")
+      addedSections.forEach(section => delete section.id)
+      removedSections.forEach(section => section.delete = "delete")
 
-    console.log(sections, post.sections)
-    console.log("Added", addedSections)
-    console.log("Removed", removedSections)
-    console.log("Edited", editedSections)
-
+      /*console.log(sections, post.sections)
+      console.log("Added", addedSections)
+      console.log("Removed", removedSections)
+      console.log("Edited", editedSections)*/
+    }
+    
     let data = {
       title: form.postTitleInput.value,
-      sections: [...addedSections, ...removedSections, ...editedSections]
+      sections: type === "edit" ? [...addedSections, ...removedSections, ...editedSections] : sections
     },
     url = `${baseUrl}/api/${type === "edit" ? `edit/${postId}/` : `create/`}`,
     axiosConfig = {
@@ -93,7 +96,7 @@ export default function EditPost({type}) {
     axios[type === "edit" ? "put" : "post"](url, JSON.stringify(data), axiosConfig)
       .then(res => {
         setTimeout(() => {
-          // window.location.pathname = `/post${ type === "edit" ? postId : res.data.id }`
+          window.location.pathname = `/post${ type === "edit" ? postId : res.data.post_id }`
           console.log(res, res.data)
         }, 2000)
         setAlertMsg({

@@ -140,7 +140,7 @@ export default function SignForm({formType}) {
 
   return (
     <div id="formWrapper" className="text-white">
-      <video src="./video/black-cubes.mp4" autoPlay muted loop />
+      <video src="./static/black-cubes.mp4" autoPlay muted loop />
       <main>
         {formType === "sign-in" ?
           <SignInForm submitForm={submitForm} validateForm={validateForm} validated={signInValidated} /> :
