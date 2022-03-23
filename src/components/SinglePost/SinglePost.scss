@@ -43,5 +43,8 @@
     .card-body:not(:last-child) {
       border-bottom: $border-width solid $border-color;
     }
+    img {
+      max-width: 100%;
+    }
   }
 }
