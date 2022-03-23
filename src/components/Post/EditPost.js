@@ -144,7 +144,7 @@ export default function EditPost({type}) {
             <FontAwesomeIcon icon={faCheck} />&nbsp;
             { type === "edit" ? "Submit edit" : "Create the Post"}
           </Button>
-          <Link to={`/post${postId}`} className="btn btn-danger">
+          <Link to={type === "edit" ? `/post${postId}` : `/users/${user.username}`} className="btn btn-danger">
             <FontAwesomeIcon icon={faTimes} />&nbsp;
             Cancel
           </Link>
