@@ -7,7 +7,6 @@ export default function AuthorCard({author}) {
         <img
           src={author.avatar}
           alt={author.nickname}
-          width="320"
         />
       </Col>
       <Col>

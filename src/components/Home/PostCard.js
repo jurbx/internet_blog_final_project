@@ -73,7 +73,7 @@ export default function PostCard({postInfo}) {
           {post.likes.length}&nbsp;
           <FontAwesomeIcon icon={liked ? faThumbsUp : farThumbsUp} />
           </Button>
-        <Link to={`/post${post.id}#comments`} className="btn btn-dark">
+        <Link to={`/post${post.id}`} className="btn btn-dark">
           {post.comments.length}&nbsp;
           <FontAwesomeIcon icon={faComments} />
         </Link>
