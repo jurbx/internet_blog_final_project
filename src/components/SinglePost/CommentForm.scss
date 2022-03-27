@@ -1,0 +1,11 @@
+@import "~bootstrap/scss/bootstrap";
+
+#commentForm {
+  padding: map-get($spacers, 3);
+
+  #commentText {
+    min-height: 1rem * $line-height-base * 5;
+    background: transparent;
+    color: inherit;
+  }
+}

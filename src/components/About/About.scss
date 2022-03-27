@@ -1,0 +1,57 @@
+@import "~bootstrap/scss/bootstrap";
+
+.author-card {
+  flex-direction: row !important;
+  border: none !important;
+
+  &:nth-child(odd) {
+    .avatar-wrapper {
+      order: 1;
+    }
+  }
+  &:not(:last-child) {
+    margin-bottom: map-get($spacers, 4);
+  }
+
+  .avatar-wrapper {
+    max-width: 100%;
+    width: 10rem;
+    height: 10rem;
+    overflow: hidden;
+    border: map-get($border-widths, 5) solid $border-color;
+    border-radius: 50%;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .link-light {
+    transition: $transition-base;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+}
+
+.section-title {
+  padding: map-get($spacers, 2) 0;
+  border: map-get($border-widths, 3) solid $primary;
+  border-left: 0;
+  border-right: 0;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .author-card {
+    display: block !important;
+
+    .avatar-wrapper {
+      // width: 100%;
+      margin: 0 auto !important;
+      order: 0 !important;
+    }
+  }
+}

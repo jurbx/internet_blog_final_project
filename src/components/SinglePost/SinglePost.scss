@@ -1,0 +1,50 @@
+@import "~bootstrap/scss/bootstrap";
+
+.single-post {
+  border-radius: $border-radius-lg;
+
+  .post-user-avatar {
+    height: 3.5rem;
+    margin-right: .5rem;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+  .comment-user-avatar {
+    width: 2rem;
+    height: 2rem;
+    margin-right: .5rem;
+    object-fit: cover;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    background: tint-color($dark, 5%);
+    border-top-left-radius: $border-radius-lg;
+    border-top-right-radius: $border-radius-lg;
+    margin-bottom: map-get($spacers, 3);
+  }
+  section {
+    margin: 3rem 0;
+
+    img {
+      max-width: 100%;
+    }
+  }
+  .post-comment {
+    border: none;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-radius: 0;
+    border-bottom: $border-width solid $border-color;
+
+    .card-header {
+      border: none;
+    }
+    .card-body:not(:last-child) {
+      border-bottom: $border-width solid $border-color;
+    }
+    img {
+      max-width: 100%;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+@import "bootstrap";
+
+#userAccountForm {
+  input:not([type="checkbox"]) {
+    background: transparent;
+    color: $white;
+  }
+  .form-floating {
+    margin-bottom: map-get($spacers, 2);
+  }
+  .user-avatar-wrapper {
+    height: 10rem;
+    width: 10rem;
+    overflow: hidden;
+    border-radius: 50%;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .col {
+    input {
+      // max-width: max-content;
+    }
+  }
+  .user-avatar-col {
+    input {
+      // max-width: fit-content;
+    }
+  }
+}

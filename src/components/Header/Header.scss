@@ -1,0 +1,25 @@
+@import "~bootstrap/scss/bootstrap";
+
+#mainHeader {
+  .page-title {
+    .logo {
+      color: $secondary;
+      transition: $transition-base;
+    }
+    &:hover {
+      .logo {
+        color: $primary;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  #mainHeader .row {
+    display: block;
+  }
+  .header-nav-wrapper, #headerNav {
+    flex-direction: column;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+}
